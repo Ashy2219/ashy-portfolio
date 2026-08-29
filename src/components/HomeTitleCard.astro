@@ -30,9 +30,6 @@ const resolvedImageUrl = typeof imageUrl === 'string' ? imageUrl : imageUrl.src;
   <div class="card left-panel">
     <!-- Top Left Tab -->
     <div class="top-tab">
-      <svg class="shield-icon" viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M12 2 L20 5.5 V11.5 C20 16.5 16.5 20.5 12 22 C7.5 20.5 4 16.5 4 11.5 V5.5 Z" fill="#fff" />
-      </svg>
       <span>Fraud</span> <strong>Shield</strong>
     </div>
 
@@ -112,6 +109,16 @@ const resolvedImageUrl = typeof imageUrl === 'string' ? imageUrl : imageUrl.src;
 
   .left-panel {
     background: linear-gradient(180deg, #0c0c0c 0%, #6b6b6b 46.63%, #000000 97.12%, #363636 100%);
+    clip-path: polygon(
+      8px 0,
+      298px 0,
+      354.5px 54px,
+      354.5px 486px,
+      346px 495.5px,
+      8px 495.5px,
+      0 486px,
+      0 8px
+    );
   }
 
   .top-tab {
@@ -137,9 +144,20 @@ const resolvedImageUrl = typeof imageUrl === 'string' ? imageUrl : imageUrl.src;
   .image-container {
     position: absolute;
     inset: 22.56px 19.34px;
-    border-radius: 8px;
     overflow: hidden;
     z-index: 1;
+    clip-path: polygon(
+      0% 3.05%,
+      28.83% 3.05%,
+      32.14% 0%,
+      85% 0%,
+      100% 10.93%,
+      100% 100%,
+      34.94% 100%,
+      34.94% 93.91%,
+      19.9% 85.3%,
+      0% 85.3%
+    );
   }
 
   .profile-img {
@@ -184,7 +202,19 @@ const resolvedImageUrl = typeof imageUrl === 'string' ? imageUrl : imageUrl.src;
   /* --- RIGHT PANEL --- */
 
   .right-panel {
-    background: linear-gradient(180deg, #363636 0%, #000000 2.88%, #6b6b6b 53.37%, #0c0c0c 100%);
+    background: linear-gradient(180deg, #0c0c0c 0%, #6b6b6b 46.63%, #000000 97.12%, #363636 100%);
+    clip-path: polygon(
+      346px 0,
+      57.09px 0,
+      50.31px 2.66px,
+      3.22px 46.18px,
+      0 53.52px,
+      0 486px,
+      8px 495.5px,
+      346px 495.5px,
+      354.5px 486px,
+      354.5px 8px
+    );
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -242,8 +272,8 @@ const resolvedImageUrl = typeof imageUrl === 'string' ? imageUrl : imageUrl.src;
   .content-bar {
     align-self: stretch;
     padding: 11.28px 12.89px;
-    background: #000;
-    color: #fff;
+    background: #d14277;
+    color: #000;
     font-size: 16px;
     font-weight: 500;
     line-height: 1.3;
@@ -261,8 +291,8 @@ const resolvedImageUrl = typeof imageUrl === 'string' ? imageUrl : imageUrl.src;
 
   .description-text {
     font-size: 13.5px;
+    font-weight: 600;
     line-height: 1.55;
-    max-width: 255.03px;
   }
 
   .text-center {
