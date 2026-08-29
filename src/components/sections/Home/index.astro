@@ -1,0 +1,49 @@
+---
+import { Image } from 'astro:assets';
+import homeBg from '../../../assets/home-bg.webp';
+import HomeTitleCard from '../../HomeTitleCard.astro';
+---
+
+<section id="home" class="section">
+	<Image
+		src={homeBg}
+		alt=""
+		quality="high"
+		class="bg"
+		aria-hidden="true"
+	/>
+	<div class="content">
+		<HomeTitleCard />
+	</div>
+</section>
+
+<style>
+	.section {
+		position: relative;
+		min-height: 100vh;
+		margin-bottom: var(--padding-section-v);
+		overflow: hidden;
+	}
+
+	.bg {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.content {
+		position: relative;
+		z-index: 1;
+		padding: var(--stack-large);
+	}
+
+	.heading {
+		margin: var(--stack-large) 0;
+	}
+
+	.intro {
+		max-width: 48ch;
+	}
+</style>

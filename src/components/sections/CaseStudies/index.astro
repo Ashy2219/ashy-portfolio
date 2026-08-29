@@ -1,0 +1,40 @@
+---
+import Section from '../../Section/index.astro';
+import { getCollection } from 'astro:content';
+
+const caseStudies = await getCollection('caseStudies', ({ data }) =>
+	import.meta.env.DEV ? true : !data.draft
+);
+---
+
+<Section id="case-studies" title="Case Studies">
+	{
+		caseStudies.length > 0 ? (
+			<ul class="list">
+				{
+					caseStudies.map((entry) => (
+						<li class="item">
+							<h3>{entry.data.title}</h3>
+							<p>{entry.data.summary}</p>
+						</li>
+					))
+				}
+			</ul>
+		) : (
+			<p class="muted">Nothing here yet — coming soon.</p>
+		)
+	}
+</Section>
+
+<style>
+	.list {
+		list-style: none;
+		padding: 0;
+		display: grid;
+		gap: var(--stack-base);
+	}
+
+	.item p {
+		margin-top: var(--stack-tight);
+	}
+</style>

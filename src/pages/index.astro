@@ -1,58 +1,16 @@
 ---
-import '../styles/global.css';
-import Sidebar from '../components/Sidebar.jsx';
-import Home from '../components/sections/Home.jsx';
-import Experience from '../components/sections/Experience.jsx';
-import CaseStudies from '../components/sections/CaseStudies.jsx';
-import Contact from '../components/sections/Contact.jsx';
-
-const siteName = 'Chachu';
+import BaseLayout from '../layouts/Base.astro';
+import Home from '../components/sections/Home/index.astro';
+import Experience from '../components/sections/Experience/index.astro';
+import CaseStudies from '../components/sections/CaseStudies/index.astro';
+import Contact from '../components/sections/Contact/index.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{siteName}</title>
-		<meta name="description" content="Portfolio of {siteName} — design and engineering." />
-	</head>
-	<body>
-		<div class="shell">
-			<Sidebar active="Home" />
-			<main class="content">
-				<Home />
-				<Experience />
-				<CaseStudies />
-				<Contact />
-			</main>
-		</div>
-	</body>
-</html>
-
-<style>
-	.shell {
-		display: grid;
-		grid-template-columns: var(--margin-desktop) 1fr;
-		min-height: 100vh;
-	}
-
-	.content {
-		padding: var(--padding-frame-v) var(--padding-frame-v)
-			var(--padding-section-v);
-	}
-
-	@media (max-width: 767.98px) {
-		.shell {
-			display: block;
-		}
-	}
-
-	@media (min-width: 768px) and (max-width: 1439.98px) {
-		.shell {
-			grid-template-columns: var(--margin-tablet) 1fr;
-		}
-	}
-</style>
+<BaseLayout>
+	<main>
+		<Home />
+		<Experience />
+		<CaseStudies />
+		<Contact />
+	</main>
+</BaseLayout>

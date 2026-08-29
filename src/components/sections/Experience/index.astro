@@ -1,0 +1,40 @@
+---
+import Section from '../../Section/index.astro';
+import { getCollection } from 'astro:content';
+
+const experience = await getCollection('experience', ({ data }) =>
+	import.meta.env.DEV ? true : !data.draft
+);
+---
+
+<Section id="experience" title="Experience">
+	{
+		experience.length > 0 ? (
+			<ul class="list">
+				{
+					experience.map((entry) => (
+						<li class="item">
+							<h3>{entry.data.role} — {entry.data.company}</h3>
+							<p>{entry.data.summary}</p>
+						</li>
+					))
+				}
+			</ul>
+		) : (
+			<p class="muted">Nothing here yet — coming soon.</p>
+		)
+	}
+</Section>
+
+<style>
+	.list {
+		list-style: none;
+		padding: 0;
+		display: grid;
+		gap: var(--stack-base);
+	}
+
+	.item p {
+		margin-top: var(--stack-tight);
+	}
+</style>

@@ -125,10 +125,7 @@
      Spacing
      ====================================================================== */
 
-  --margin-desktop: 283px;
-  --margin-tablet: 40px;
   --padding-section-v: 80px;
-  --padding-frame-v: 40px;
   --gutter-card: 24px;
   --stack-tight: 6px;
   --stack-base: 12px;
