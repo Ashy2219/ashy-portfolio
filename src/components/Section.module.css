@@ -1,0 +1,9 @@
+.section {
+	margin-bottom: var(--padding-section-v);
+}
+
+.title {
+	margin-bottom: var(--stack-large);
+	padding-bottom: var(--stack-base);
+	border-bottom: var(--border-default);
+}

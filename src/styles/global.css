@@ -50,8 +50,12 @@ a {
 }
 
 ::selection {
-  background: var(--brand-blue);
-  color: var(--white);
+	background: var(--brand-blue);
+	color: var(--white);
+}
+
+.muted {
+	color: var(--on-surface-variant);
 }
 
 /* ==========================================================================

@@ -1,0 +1,15 @@
+.section {
+	margin-bottom: var(--padding-section-v);
+}
+
+.tagline {
+	color: var(--brand-blue);
+}
+
+.heading {
+	margin: var(--stack-large) 0;
+}
+
+.intro {
+	max-width: 48ch;
+}
