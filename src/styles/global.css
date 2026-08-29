@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Press+Start+2P&display=swap');
+@import './tokens.css';
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--on-background);
+  font-family: var(--font-body);
+  font-size: var(--text-body-main);
+  line-height: var(--leading-body-main);
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+svg,
+video,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+a {
+  color: var(--brand-blue);
+}
+
+::selection {
+  background: var(--brand-blue);
+  color: var(--white);
+}
+
+/* ==========================================================================
+   Text utilities — the DESIGN.md text styles
+   ========================================================================== */
+
+.text-display-xl {
+  font-family: var(--font-display);
+  font-size: var(--text-display-xl);
+  font-weight: 400;
+  line-height: var(--leading-display-xl);
+  letter-spacing: var(--tracking-display-xl);
+}
+
+.text-menu-item {
+  font-family: var(--font-nav);
+  font-size: var(--text-menu-item);
+  font-weight: 900;
+  line-height: var(--leading-menu-item);
+}
+
+.text-button-text {
+  font-family: var(--font-nav);
+  font-size: var(--text-button-text);
+  font-weight: 900;
+  line-height: var(--leading-button-text);
+}
+
+.text-body-lead {
+  font-family: var(--font-body);
+  font-size: var(--text-body-lead);
+  font-weight: 500;
+  line-height: var(--leading-body-lead);
+}
+
+.text-body-main {
+  font-family: var(--font-body);
+  font-size: var(--text-body-main);
+  font-weight: 400;
+  line-height: var(--leading-body-main);
+}
+
+.text-label-caps {
+  font-family: var(--font-body);
+  font-size: var(--text-label-caps);
+  font-weight: 500;
+  line-height: var(--leading-label-caps);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.text-metadata {
+  font-family: var(--font-body);
+  font-size: var(--text-metadata);
+  font-weight: 500;
+  line-height: var(--leading-metadata);
+}
+
+@media (max-width: 767.98px) {
+  .text-display-xl {
+    font-size: var(--text-display-xl-mobile);
+    line-height: var(--leading-display-xl-mobile);
+  }
+}

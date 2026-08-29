@@ -1,0 +1,174 @@
+/* ==========================================================================
+   Design Tokens — Technical Retro-Modernism
+   Source: DESIGN.md
+   References: ./tokens.css ONLY defines raw values. Consumption happens in
+   global.css and component styles via var(--token).
+   ========================================================================== */
+
+:root {
+  /* ======================================================================
+     Colors
+     ====================================================================== */
+
+  /* Surfaces */
+  --surface: #faf9fe;
+  --surface-dim: #dad9df;
+  --surface-bright: #faf9fe;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #f4f3f8;
+  --surface-container: #eeedf3;
+  --surface-container-high: #e9e7ed;
+  --surface-container-highest: #e3e2e7;
+  --surface-variant: #e3e2e7;
+
+  /* On-surface */
+  --on-surface: #1a1b1f;
+  --on-surface-variant: #47464a;
+  --inverse-surface: #2f3034;
+  --inverse-on-surface: #f1f0f5;
+
+  /* Outline */
+  --outline: #78767b;
+  --outline-variant: #c8c5ca;
+  --surface-tint: #5f5e60;
+
+  /* Primary (stark monochrome) */
+  --primary: #000000;
+  --on-primary: #ffffff;
+  --primary-container: #1c1b1d;
+  --on-primary-container: #858386;
+  --inverse-primary: #c8c6c8;
+  --primary-fixed: #e5e1e4;
+  --primary-fixed-dim: #c8c6c8;
+  --on-primary-fixed: #1c1b1d;
+  --on-primary-fixed-variant: #474649;
+
+  /* Secondary (blue) */
+  --secondary: #044be4;
+  --on-secondary: #ffffff;
+  --secondary-container: #3667fe;
+  --on-secondary-container: #fffbff;
+  --secondary-fixed: #dce1ff;
+  --secondary-fixed-dim: #b7c4ff;
+  --on-secondary-fixed: #001551;
+  --on-secondary-fixed-variant: #0039b5;
+
+  /* Tertiary */
+  --tertiary: #000000;
+  --on-tertiary: #ffffff;
+  --tertiary-container: #3f001b;
+  --on-tertiary-container: #e04e83;
+  --tertiary-fixed: #ffd9e1;
+  --tertiary-fixed-dim: #ffb1c5;
+  --on-tertiary-fixed: #3f001b;
+  --on-tertiary-fixed-variant: #8e0246;
+
+  /* Error */
+  --error: #ba1a1a;
+  --on-error: #ffffff;
+  --error-container: #ffdad6;
+  --on-error-container: #93000a;
+
+  /* Background */
+  --background: #faf9fe;
+  --on-background: #1a1b1f;
+
+  /* Brand */
+  --charcoal: #09090b;
+  --brand-blue: #2258f0;
+  --brand-pink: #d14277;
+  --brand-blue-muted: rgba(34, 88, 240, 0.12);
+  --brand-pink-muted: rgba(209, 66, 119, 0.3);
+
+  /* Base */
+  --white: #ffffff;
+  --black: #000000;
+
+  /* Lines & overlays */
+  --border-light: #e5e5ea;
+  --card-overlay: rgba(0, 0, 0, 0.22);
+
+  /* ======================================================================
+     Typography
+     ====================================================================== */
+
+  --font-display: 'Press Start 2P', ui-monospace, monospace;
+  --font-nav: 'Doto', 'Instrument Sans', sans-serif;
+  --font-body: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+
+  --text-display-xl: 40px;
+  --leading-display-xl: 40px;
+  --tracking-display-xl: -0.02em;
+
+  --text-display-xl-mobile: 24px;
+  --leading-display-xl-mobile: 32px;
+
+  --text-menu-item: 20px;
+  --leading-menu-item: 32px;
+
+  --text-button-text: 13.5px;
+  --leading-button-text: 18px;
+
+  --text-body-lead: 16px;
+  --leading-body-lead: 32px;
+
+  --text-body-main: 14px;
+  --leading-body-main: 17px;
+
+  --text-label-caps: 12px;
+  --leading-label-caps: 32px;
+
+  --text-metadata: 10.3px;
+  --leading-metadata: 27px;
+
+  /* ======================================================================
+     Spacing
+     ====================================================================== */
+
+  --margin-desktop: 283px;
+  --margin-tablet: 40px;
+  --padding-section-v: 80px;
+  --padding-frame-v: 40px;
+  --gutter-card: 24px;
+  --stack-tight: 6px;
+  --stack-base: 12px;
+  --stack-large: 40px;
+
+  /* ======================================================================
+     Radius
+     ====================================================================== */
+
+  --radius-sm: 0.25rem; /* 4px */
+  --radius-d: 0.5rem; /* 8px */
+  --radius-md: 0.75rem; /* 12px */
+  --radius-lg: 1rem; /* 16px */
+  --radius-xl: 1.5rem; /* 24px */
+  --radius-full: 9999px;
+
+  --radius-card: 10px;
+  --radius-interactive: 4.5px;
+  --radius-badge: 45px;
+
+  /* ======================================================================
+     Borders
+     ====================================================================== */
+
+  --border-default: 1px solid var(--border-light);
+  --border-hairline: 0.56px solid var(--border-light);
+
+  /* ======================================================================
+     Elevation & Effects
+     ====================================================================== */
+
+  --shadow-dev: -1px 3px 3.5px rgba(0, 0, 0, 0.33);
+  --blur-glass: 10px;
+  --blur-backdrop: 12px;
+  --blur-backdrop-opacity: 0.6;
+
+  /* ======================================================================
+     Breakpoints
+     ====================================================================== */
+
+  --breakpoint-desktop: 1440px;
+  --breakpoint-tablet: 768px;
+}
