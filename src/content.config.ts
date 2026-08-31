@@ -23,9 +23,10 @@ const caseStudies = defineCollection({
 		summary: z.string(),
 		year: z.coerce.number().int(),
 		client: z.string().optional(),
+		image: z.string().optional(),
+		url: z.string().optional(),
 		tags: z.array(z.string()).default([]),
-		draft: z.boolean().default(false),
-	}),
+		draft: z.boolean().default(false),	}),
 });
 
 export const collections = { experience, caseStudies };

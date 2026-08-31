@@ -1,40 +1,230 @@
 ---
-import Section from '../../Section/index.astro';
 import { getCollection } from 'astro:content';
 
-const experience = await getCollection('experience', ({ data }) =>
+const experience = (await getCollection('experience', ({ data }) =>
 	import.meta.env.DEV ? true : !data.draft
-);
+)).sort((a, b) => b.data.start.getTime() - a.data.start.getTime());
+
+const headerTags = ['Graphic Designer', 'UI/UX Designer', 'Visual Designer'];
+
+const monthShort = (d: Date) =>
+	d.toLocaleDateString('en-US', { month: 'short' });
+const year = (d: Date) => d.toLocaleDateString('en-US', { year: 'numeric' });
+
+const period = (entry: (typeof experience)[number]) => {
+	const { start, end, current } = entry.data;
+	if (current) return 'Present';
+	return end
+		? `${monthShort(start)} ${year(start)} - ${monthShort(end)} ${year(end)}`
+		: `${monthShort(start)} ${year(start)} - Present`;
+};
 ---
 
-<Section id="experience" title="Experience">
-	{
-		experience.length > 0 ? (
-			<ul class="list">
+<section id="experience" class="experience">
+	<div class="container">
+		<header class="panel-header">
+			<h2 class="heading">Experience</h2>
+			<ul class="tag-row">
 				{
-					experience.map((entry) => (
-						<li class="item">
-							<h3>{entry.data.role} — {entry.data.company}</h3>
-							<p>{entry.data.summary}</p>
-						</li>
+					headerTags.map((tag) => (
+						<li class="tag">{tag}</li>
 					))
 				}
 			</ul>
-		) : (
-			<p class="muted">Nothing here yet — coming soon.</p>
-		)
-	}
-</Section>
+		</header>
+
+		<div class="panel-list">
+			<div class="row">
+
+				<ul class="entries">
+					{
+						experience.map((entry) => (
+							<li class="entry">
+								<div class="entry-head">
+									<a class="company" href="#">{entry.data.company}</a>
+									<div class="entry-pills">
+										<span class="pill pill--role">{entry.data.role}</span>
+										<span class="pill pill--period">{period(entry)}</span>
+									</div>
+								</div>
+								<p class="desc">
+									<span class="desc-icon" aria-hidden="true">&#9654;</span>
+									<span>{entry.data.summary}</span>
+								</p>
+							</li>
+						))
+					}
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
 
 <style>
-	.list {
-		list-style: none;
-		padding: 0;
-		display: grid;
+	.experience {
+		background: var(--background);
+		border-top: var(--border-default);
+	}
+
+	.container {
+		max-width: 853px;
+		margin: 0 auto;
+	}
+
+	.panel-header {
+		border-bottom: var(--border-default);
+		padding: var(--stack-large) var(--stack-large) 40px;
+		display: flex;
+		flex-direction: column;
 		gap: var(--stack-base);
 	}
 
-	.item p {
-		margin-top: var(--stack-tight);
+	.heading {
+		font-family: var(--font-display);
+		font-size: var(--text-display-xl);
+		font-weight: 400;
+		line-height: 92%;
+		color: #000000;
+	}
+
+	.tag-row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+		list-style: none;
+		padding: 0;
+	}
+
+	.tag {
+		padding: 8px 12px;
+		background: var(--brand-blue-muted);
+		border-radius: var(--radius-badge);
+		font-family: var(--font-body);
+		font-size: var(--text-label-caps);
+		font-weight: 500;
+		line-height: 1;
+		letter-spacing: -0.02em;
+		color: var(--brand-blue);
+	}
+
+	.panel-list {
+		border-bottom: var(--border-default);
+		padding: var(--stack-large) 40px 40px var(--stack-large);
+	}
+
+	.row {
+		display: flex;
+		gap: var(--stack-large);
+	}
+
+	.rail {
+		flex-shrink: 0;
+	}
+
+	.rail-label {
+		font-family: var(--font-body);
+		font-size: var(--text-body-lead);
+		font-weight: 500;
+		line-height: var(--leading-body-lead);
+		letter-spacing: -0.02em;
+		color: #8e8e93;
+	}
+
+	.entries {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		min-width: 0;
+		flex: 1;
+	}
+
+	.entry {
+		display: flex;
+		flex-direction: column;
+		gap: var(--stack-tight);
+	}
+
+	.entry-head {
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: var(--stack-base);
+	}
+
+	.company {
+		font-family: var(--font-body);
+		font-size: var(--text-body-lead);
+		font-weight: 500;
+		line-height: var(--leading-body-lead);
+		letter-spacing: -0.02em;
+		text-decoration: underline;
+		color: var(--charcoal);
+	}
+
+	.entry-pills {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--stack-tight);
+	}
+
+	.pill {
+		padding: 8px 12px;
+		border-radius: var(--radius-badge);
+		font-family: var(--font-body);
+		font-size: var(--text-label-caps);
+		font-weight: 500;
+		line-height: 1;
+		letter-spacing: -0.02em;
+	}
+
+	.pill--role {
+		background: var(--brand-blue-muted);
+		color: var(--brand-blue);
+	}
+
+	.pill--period {
+		border: 1px solid var(--brand-pink-muted);
+		color: var(--brand-pink);
+	}
+
+	.desc {
+		display: flex;
+		gap: var(--stack-tight);
+		align-items: flex-start;
+		font-family: var(--font-body);
+		font-size: var(--text-body-main);
+		line-height: var(--leading-body-main);
+		letter-spacing: -0.02em;
+		color: #8e8e93;
+	}
+
+	.desc-icon {
+		flex-shrink: 0;
+		font-size: 12px;
+		line-height: var(--leading-body-main);
+		color: var(--charcoal);
+	}
+
+	@media (max-width: 900px) {
+		.container {
+			max-width: 100%;
+		}
+
+		.panel-header,
+		.panel-list {
+			padding-left: 24px;
+			padding-right: 24px;
+		}
+	}
+
+	@media (max-width: 639.98px) {
+		.row {
+			flex-direction: column;
+			gap: var(--stack-base);
+		}
 	}
 </style>

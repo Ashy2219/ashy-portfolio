@@ -1,40 +1,180 @@
 ---
-import Section from '../../Section/index.astro';
+import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
+import markitCase from '../../../assets/markit-case.webp';
+import valorantCase from '../../../assets/valorant-case.webp';
 
-const caseStudies = await getCollection('caseStudies', ({ data }) =>
+const images: Record<string, ImageMetadata> = {
+	'markit': markitCase,
+	'valorant': valorantCase,
+};
+
+const caseStudies = (await getCollection('caseStudies', ({ data }) =>
 	import.meta.env.DEV ? true : !data.draft
-);
+)).sort((a, b) => b.data.year - a.data.year);
 ---
 
-<Section id="case-studies" title="Case Studies">
-	{
-		caseStudies.length > 0 ? (
-			<ul class="list">
+<section id="case-studies" class="case-studies">
+	<div class="container">
+		<header class="panel-header">
+			<h2 class="heading">Case studies</h2>
+		</header>
+
+		<div class="panel-list">
+			<ul class="grid">
 				{
-					caseStudies.map((entry) => (
-						<li class="item">
-							<h3>{entry.data.title}</h3>
-							<p>{entry.data.summary}</p>
-						</li>
-					))
+					caseStudies.map((entry) => {
+						const img = entry.data.image ? images[entry.data.image] : null;
+						const href = entry.data.url || '#';
+						return (
+							<li class="card">
+								<a class="card-link" href={href}>
+									{
+										img && (
+											<Image
+												class="thumb"
+												src={img}
+												alt=""
+												widths={[275, 550, 825]}
+												sizes="(min-width: 900px) 275px, 100vw"
+											/>
+										)
+									}
+									<div class="card-body">
+										<div class="card-title">
+											<span class="title">{entry.data.title}</span>
+											<div class="tags">
+												{
+													entry.data.tags.map((tag) => (
+														<span class="tag">{tag}</span>
+													))
+												}
+											</div>
+										</div>
+										<p class="desc">{entry.data.summary}</p>
+									</div>
+								</a>
+							</li>
+						);
+					})
 				}
 			</ul>
-		) : (
-			<p class="muted">Nothing here yet — coming soon.</p>
-		)
-	}
-</Section>
+		</div>
+	</div>
+</section>
 
 <style>
-	.list {
+	.case-studies {
+		background: var(--background);
+		border-top: var(--border-default);
+	}
+
+	.container {
+		max-width: 853px;
+		margin: 0 auto;
+	}
+
+	.panel-header {
+		border-bottom: var(--border-default);
+		padding: var(--stack-large) var(--stack-large) 40px;
+	}
+
+	.heading {
+		font-family: var(--font-display);
+		font-size: var(--text-display-xl);
+		font-weight: 400;
+		line-height: 92%;
+		color: #000000;
+	}
+
+	.panel-list {
+		border-bottom: var(--border-default);
+		padding: var(--stack-large) 40px 40px var(--stack-large);
+	}
+
+	.grid {
 		list-style: none;
 		padding: 0;
+		margin: 0;
 		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
+		gap: 24px;
+	}
+
+	.card-link {
+		display: flex;
+		flex-direction: column;
+		gap: var(--stack-base);
+		text-decoration: none;
+		color: inherit;
+	}
+
+	.thumb {
+		width: 100%;
+		aspect-ratio: 16 / 9;
+		object-fit: cover;
+		border-radius: var(--radius-card);
+	}
+
+	.card-body {
+		display: flex;
+		flex-direction: column;
+		gap: var(--stack-tight);
+	}
+
+	.card-title {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		flex-wrap: wrap;
 		gap: var(--stack-base);
 	}
 
-	.item p {
-		margin-top: var(--stack-tight);
+	.title {
+		font-family: var(--font-body);
+		font-size: var(--text-body-lead);
+		font-weight: 500;
+		line-height: var(--leading-body-lead);
+		letter-spacing: -0.02em;
+		text-decoration: underline;
+		color: var(--charcoal);
+	}
+
+	.tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--stack-tight);
+	}
+
+	.tag {
+		padding: 8px 12px;
+		background: var(--brand-blue-muted);
+		border-radius: var(--radius-badge);
+		font-family: var(--font-body);
+		font-size: var(--text-label-caps);
+		font-weight: 500;
+		line-height: 1;
+		letter-spacing: -0.02em;
+		color: var(--brand-blue);
+	}
+
+	.desc {
+		font-family: var(--font-body);
+		font-size: var(--text-body-main);
+		line-height: var(--leading-body-main);
+		letter-spacing: -0.02em;
+		color: #8e8e93;
+	}
+
+	@media (max-width: 900px) {
+		.container {
+			max-width: 100%;
+		}
+
+		.panel-header,
+		.panel-list {
+			padding-left: 24px;
+			padding-right: 24px;
+		}
 	}
 </style>
