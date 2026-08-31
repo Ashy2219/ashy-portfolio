@@ -31,13 +31,15 @@ const caseStudies = (await getCollection('caseStudies', ({ data }) =>
 								<a class="card-link" href={href}>
 									{
 										img && (
-											<Image
-												class="thumb"
-												src={img}
-												alt=""
-												widths={[275, 550, 825]}
-												sizes="(min-width: 900px) 275px, 100vw"
-											/>
+											<div class="thumb-wrap">
+												<Image
+													class="thumb"
+													src={img}
+													alt=""
+													widths={[275, 550, 825]}
+													sizes="(min-width: 900px) 275px, 100vw"
+												/>
+											</div>
 										)
 									}
 									<div class="card-body">
@@ -109,11 +111,18 @@ const caseStudies = (await getCollection('caseStudies', ({ data }) =>
 		color: inherit;
 	}
 
+	.thumb-wrap {
+		position: relative;
+		aspect-ratio: 16 / 9;
+		overflow: hidden;
+		border-radius: var(--radius-card);
+	}
+
 	.thumb {
 		width: 100%;
-		aspect-ratio: 16 / 9;
+		height: 100%;
 		object-fit: cover;
-		border-radius: var(--radius-card);
+		display: block;
 	}
 
 	.card-body {
