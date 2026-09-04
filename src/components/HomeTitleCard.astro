@@ -103,6 +103,15 @@ const resolvedImageUrl = typeof imageUrl === 'string' ? imageUrl : imageUrl.src;
     position: relative;
     border-radius: 10px;
     overflow: hidden;
+    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                filter 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+  }
+
+  .card:hover {
+    transform: translateY(-8px) scale(1.02);
+    filter: drop-shadow(0 12px 28px rgba(209, 66, 119, 0.35))
+            drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
   }
 
   /* --- LEFT PANEL --- */
