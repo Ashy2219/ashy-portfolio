@@ -3,7 +3,18 @@ import { getCollection } from 'astro:content';
 
 const experience = (await getCollection('experience', ({ data }) =>
 	import.meta.env.DEV ? true : !data.draft
-)).sort((a, b) => b.data.start.getTime() - a.data.start.getTime());
+)).sort((a, b) => {
+	if (a.data.company === 'Fraud Shield') return -1;
+	if (b.data.company === 'Fraud Shield') return 1;
+	return b.data.start.getTime() - a.data.start.getTime();
+});
+
+const companyUrls: Record<string, string> = {
+	'Fraud Shield': 'https://fraudshield.ltd',
+	'Neokred': 'https://www.neokred.tech',
+	'D7 Networks': 'https://d7networks.com',
+	'Teqdad IT Solutions': 'https://teqdad.com',
+};
 
 const headerTags = ['Graphic Designer', 'UI/UX Designer', 'Visual Designer'];
 
@@ -41,7 +52,7 @@ const period = (entry: (typeof experience)[number]) => {
 						experience.map((entry) => (
 							<li class="entry">
 								<div class="entry-head">
-									<a class="company" href="#">{entry.data.company}</a>
+									<a class="company" href={companyUrls[entry.data.company] ?? '#'} target="_blank" rel="noopener noreferrer">{entry.data.company}</a>
 									<div class="entry-pills">
 										<span class="pill pill--role">{entry.data.role}</span>
 										<span class="pill pill--period">{period(entry)}</span>

@@ -17,7 +17,7 @@ const {
   lastName = "MOHANAN",
   role = "UI/UX/Graphic Designer",
   experience = "5 Years",
-  description = "I'm Ashiq — a creative Visual & Digital Designer skilled in UI/UX, SaaS illustrations, and marketing design. I combine creativity with strategy to craft impactful, user-focused experiences.",
+  description = "I'm Ashiq, a creative Visual & Digital Designer skilled in UI/UX, SaaS illustrations, and marketing design. I combine creativity with strategy to craft impactful, user-focused experiences.",
   imageUrl = ashik
 } = Astro.props;
 
@@ -65,7 +65,7 @@ const resolvedImageUrl = typeof imageUrl === 'string' ? imageUrl : imageUrl.src;
       <!-- Title Section -->
       <div class="section">
         <div class="label-bar">TITLE</div>
-        <div class="content-bar text-lg">{role}</div>
+        <div class="content-bar text-lg"><strong>{role}</strong></div>
       </div>
 
       <!-- Experience Section -->
